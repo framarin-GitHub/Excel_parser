@@ -2,7 +2,7 @@ function main(workbook: ExcelScript.Workbook) {
   //read data
   //prende il foglio attivo tabellato e crea un foglio nuovo SCHEMA
   let row_number:number = 0;
-  const cols_number:number = 12;
+  const cols_number:number = 13;
   const table = workbook.getActiveWorksheet().getTables()[0];
   const texts = table.getRange().getTexts();
 
@@ -75,7 +75,7 @@ function main(workbook: ExcelScript.Workbook) {
     return objectArray;
   }
   function buildCellObject(data:TableData): string[][]{
-    return [["", data["REP"]], 
+    return [[data["bl_N_prog"], data["REP"]], 
             [data["ID_plot"], ""],
             [data["VARIETY_NA"],""],
             [`Y: ${data["Y-altezza"]}`, `X: ${data["X-base"]}`]];
@@ -92,5 +92,6 @@ function main(workbook: ExcelScript.Workbook) {
     "Y-altezza": string
     "X-base": string
     blocco: string
+    bl_N_prog: string
   }
 }
