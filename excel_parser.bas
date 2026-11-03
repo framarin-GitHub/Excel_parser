@@ -17,13 +17,13 @@ Public Sub BuildSchema()
     rowCount = ReadRecords(texts, headers, data)
     If rowCount = 0 Then Exit Sub
 
-    Dim cX As Long, cY As Long, cProg As Long, cRep As Long, cId As Long, cVar As Long
+    Dim cX As Long, cY As Long, cProg As Long, cRep As Long, cId As Long, cVariety As Long
     cX = ColIdx(headers, "X-base")
     cY = ColIdx(headers, "Y-altezza")
     cProg = ColIdx(headers, "bl_N_prog")
     cRep = ColIdx(headers, "REP")
     cId = ColIdx(headers, "ID_plot")
-    cVar = ColIdx(headers, "VARIETY_NA")
+    cVariety = ColIdx(headers, "VARIETY_NA")
 
     Dim i As Long, v As Long
     Dim maxRows As Long, minCols As Long
@@ -42,7 +42,7 @@ Public Sub BuildSchema()
     Dim target As Range
     For i = 1 To rowCount
         Set target = anchor.Offset((maxRows - CLng(data(i, cY))) * 4, (CLng(data(i, cX)) - minCols) * 2).Resize(4, 2)
-        target.Value = BuildCellBlock(data(i, cProg), data(i, cRep), data(i, cId), data(i, cVar), data(i, cY), data(i, cX))
+        target.Value = BuildCellBlock(data(i, cProg), data(i, cRep), data(i, cId), data(i, cVariety), data(i, cY), data(i, cX))
         ApplyBorders target
     Next i
 End Sub
